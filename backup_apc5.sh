@@ -1,61 +1,4 @@
-#!/bin/bash
 #=======================================================================#
-#=======================================================================#
-
-## backup_apc5.sh - Scripts para gerar backups e enviar para FTP e Email.
-## Escrito por: Joabe Guimaraes Querino Kachorroski  (Campo Grande - MS)
-## E-mail: joabejbk@gmail.com
-## Sistemas Operacional: Ubuntu GNU/Linux 12.04
-## Data de criação deste scriptQuin 29/09/2016 às14:05:09
-## Versão:0.1
-
-#=======================================================================#
-#=========== CONFIGURACAO GLOBAL DE ACESSO SSH DOS RADIOS ==============#
-ssh_user="admivr"
-ssh_pass="1vrn3ts3gur02016"
-ssh_porta="22"
-
-ssh1_user="admin"
-ssh1_pass="admin01"
-ssh1_porta="22"
-
-#================== CONFIGURACAO GLOBAL DO E-MAIL === ==================#
-de="backupmikrotik@ivrnet.com.br"
-para="joabe@ivrnet.com.br"
-smtp="smtp.gmail.com"
-porta="587"
-user="backupmikrotik@ivrnet.com.br"
-senha="1vrn3ts3gur02016"
-
-#============== COMANDO PARA PEGAR O ARQUIVO DE CONFIGURACAO ===========#
-comando="cat /tmp/system.cfg"
-aps_online="/home/intelbras/mkauthapc/aps_online.txt"
-aps_offline="/home/intelbras/mkauthapc/aps_offline.txt"
-aps_contabilizados="/home/intelbras/mkauthapc/total_aps.txt"
-radio=`sed -e '/6.67/!d' /home/intelbras/mkauthapc/apc.txt`
-
-#=================== LIMPA BACKUPS ANTIGOS ==============================#
-#INICIANDO O SCRIPT
-echo "Aguarde!!! Localizando e Excluindo Backups Antigos."
-sleep 5
-DIR="/home/intelbras/mkauthapc/apc5/"
-DIAS="1"
-CMD="find $DIR -name "*.tgz" -ctime +$DIAS -exec rm{} \;"
-ARQ="/tmp/bkp_old.log"
-
-$CMD &> $ARQ 2> /dev/null
-AUX=$(cat $ARQ | wc -l)
-if [ $AUX = 0 ]; then
-   echo "Nenhum backup com mais de $DIAS dia(s) para excluir!"
-else
-   $CMD | xargs rm -rf
-   echo "Backup(s) com mais de $DIAS dia(s) de criaçao excluido(s)!"
-   rm -rf $ARQ
-fi
-#!/bin/bash
-#=======================================================================#
-#=======================================================================#
-
 ## backup_apc5.sh - Scripts para gerar backups e enviar para FTP e Email.
 ## Escrito por: Joabe Guimaraes Querino Kachorroski  (Campo Grande - MS)
 ## E-mail: joabejbk@gmail.com
@@ -74,11 +17,11 @@ ssh1_pass="user"
 ssh1_porta="22"
 
 #================== CONFIGURACAO GLOBAL DO E-MAIL === ==================#
-de="backupmikrotik@ivrnet.com.br"
-para="joabe@ivrnet.com.br"
+de="emailquevai@enviar.com.br"
+para="emailquevai@receber.com.br"
 smtp="smtp.gmail.com"
 porta="587"
-user="backupmikrotik@ivrnet.com.br"
+user="emailquevai@enviar.com.br"
 senha="password"
 
 #============== COMANDO PARA PEGAR O ARQUIVO DE CONFIGURACAO ===========#
@@ -140,7 +83,6 @@ echo "Aguarde!!! Contabilizando quantos Backups foram feitos."
 find /home/intelbras/mkauthapc/apc5/cfg  -type d | \
 while read line
 do
-
     echo "$line" && ls -l "$line" | grep -v ^total | wc -l >> $aps_contabilizados
 done
 
@@ -161,8 +103,6 @@ anexo="$arq_tgz"
 assunto="Backup dos Radios APC5+ `date +%d/%m/%Y`"
 mensagem="Segue em anexo os Backup dos Radios APC5+.... Backups gerado e enviado automaticamente pelo Serv$
 
-#========================================================================#
-#ENVIANDO E-MAIL
 #========================================================================#
 #ENVIANDO E-MAIL
 echo "Enviando E-mail com Backups e logs..."
