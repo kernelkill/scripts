@@ -21,12 +21,12 @@ ssh1_pass="senha"
 ssh1_porta="22"
 
 #============== CONFIGURACAO DO E-MAIL QUE VAI ENVIAR ==================#
-de="backupmikrotik@ivrnet.com.br"
-para="joabe@ivrnet.com.br"
+de="quemvai@enviar.email.com"
+para="quemvai@receber.email.com"
 smtp="smtp.gmail.com"
 porta="587"
 user="backupmikrotik@ivrnet.com.br"
-senha="1vrn3ts3gur02016"
+senha="password"
 #============== COMANDO PARA PEGAR O ARQUIVO DE CONFIGURACAO ===========#
 comando="cat /tmp/system.cfg"
 
