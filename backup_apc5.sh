@@ -11,13 +11,13 @@
 
 #=======================================================================#
 #======= CONFIGURACAO DE USUARIO,SENHA E PORTA SSH DOS RADIOS ==========#
-ssh_user="admivr"
-ssh_pass="1vrn3ts3gur02016"
+ssh_user="user"
+ssh_pass="senha"
 ssh_porta="22"
 
 
-ssh1_user="admin"
-ssh1_pass="admin01"
+ssh1_user="user"
+ssh1_pass="senha"
 ssh1_porta="22"
 
 #============== CONFIGURACAO DO E-MAIL QUE VAI ENVIAR ==================#
