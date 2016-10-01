@@ -10,7 +10,7 @@
  
 # SMTP DYNAMIC 
 :local gmailuser joabe@ivrnet.com.br
-:local gmailpwd Kachorroski@I3J.
+:local gmailpwd password
 :local gmailport 587
  
 :local gmailsmtp
